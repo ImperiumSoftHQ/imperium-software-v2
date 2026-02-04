@@ -1,0 +1,11 @@
+**/bin/
+**/obj/
+.git
+.gitignore
+*.log
+.env
+.env.*
+.vscode
+.idea
+README.md
+appsettings.Development.json

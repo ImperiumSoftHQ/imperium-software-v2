@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "brand": "Imperium Software",
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Imperium Software",
+
+    "description": "We craft exceptional digital experiences with cutting-edge technology and creative excellence. Your success is our mission.",
+    "cta": "Get in Touch"
+  },
+  "services": {
+    "title": "Our services",
+    "subtitle": "Comprehensive digital solutions tailored to your needs",
+    "items": {
+      "customSoftware": {
+        "title": "Custom Software Solutions",
+        "description": "We offer a custom product designed by your needs and expectations, built from scratch."
+      },
+      "outsourcing": {
+        "title": "Outsourcing",
+        "description": "We offer our experience in software development by taking part into your projects. We are flexible when it comes to collaborating with other developers so we can integrate smoothly into your process."
+      },
+      "webDesign": {
+        "title": "Web Design",
+        "description": "Clean, modern websites designed to convert—fast, responsive, and SEO-friendly. We craft UI/UX that looks great on every device and feels effortless to use."
+      },
+      "maintenance": {
+        "title": "Maintenance & Support",
+        "description": "We keep your product stable, secure, and up to date after launch. Ongoing monitoring, bug fixes, improvements, and performance tuning—backed by clear response times."
+      }
+    }
+  },
+  "about": {
+    "title": "Meet Our Team",
+    "subtitle": "The minds behind Imperium Software",
+    "description": "Led by two passionate entrepreneurs with a shared vision of digital excellence",
+    "techStackTitle": "Technologies We Master",
+    "techStackSubtitle": "Our core technology stack",
+    "team": {
+      "member1": {
+        "name": "Peter Petrov",
+        "role": "Full Stack Developer",
+        "description": "Two years of experience in software development. Design and UI/UX enthusiast.",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/your-profile-1",
+          "portfolio": "https://your-portfolio-1.com",
+          "github": "https://github.com/your-github-1"
+        }
+      },
+      "member2": {
+        "name": "Hristo Nikolov",
+        "role": "Full Stack Developer",
+        "description": "Two years of experience in software development. Backend powerhouse and architecturally minded.",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/your-profile-2",
+          "portfolio": "https://your-portfolio-2.com",
+          "github": "https://github.com/your-github-2"
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "Let's Build Something Amazing",
+    "subtitle": "Ready to start your project?",
+    "description": "Get in touch with us to discuss your project and discover how we can help bring your vision to life.",
+    "form": {
+      "title": "Send us a message",
+      "name": "Your Name",
+      "email": "Your Email",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+      "error": "Something went wrong. Please try again later."
+    },
+    "info": {
+      "email": {
+        "label": "Email",
+        "value": "imperium.solutions.dev@gmail.com"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "value": "Connect with us",
+        "url": "https://www.linkedin.com/company/your-company"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Imperium Software. All rights reserved.",
+    "tagline": "Crafting digital excellence"
+  }
+}

@@ -1,0 +1,80 @@
+version: "3.8"
+
+services:
+  # ==========================================================================
+  # PostgreSQL (INTERNAL ONLY)
+  # ==========================================================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: imperium-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-imperium_software}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB:-imperium_software}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - imperium-network
+
+  # ==========================================================================
+  # Backend API (.NET)
+  # ==========================================================================
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile
+    container_name: imperium-backend
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: >
+        Host=postgres;
+        Database=${POSTGRES_DB:-imperium_software};
+        Username=${POSTGRES_USER};
+        Password=${POSTGRES_PASSWORD}
+      Jwt__Key: ${JWT_SECRET_KEY}
+      Jwt__Issuer: ${JWT_ISSUER:-ImperiumSoftware}
+      Jwt__Audience: ${JWT_AUDIENCE:-ImperiumSoftwareFrontend}
+      Jwt__ExpireHours: ${JWT_EXPIRE_HOURS:-24}
+      Cors__Origins: https://imperium-software.com,https://www.imperium-software.com
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - imperium-network
+
+  # ==========================================================================
+  # Frontend (React + nginx) — PUBLIC EDGE
+  # ==========================================================================
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend/Dockerfile
+      args:
+        VITE_API_URL: /api
+    container_name: imperium-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # TLS certs live on the host (Let’s Encrypt)
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - backend
+    networks:
+      - imperium-network
+
+networks:
+  imperium-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
